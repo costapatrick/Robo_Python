@@ -1,0 +1,198 @@
+# Save by Patrick Son on 2021_03_18-16.19.46; build 2017 2016_09_27-18.54.59 126836
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=10000.0)
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    850.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(850.0, 0.0), point2=
+    (850.0, 600.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(850.0, 600.0), 
+    point2=(0.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].ObliqueDimension(textPoint=(
+    4000.0, 0.0), value=4000.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1])
+mdb.models['Model-1'].sketches['__profile__'].VerticalDimension(textPoint=(
+    1185.85095214844, 69.9677429199219), value=6000.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[2], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=10000.0)
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    1000.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalConstraint(
+    addUndoState=False, entity=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(1000.0, 0.0), 
+    point2=(1000.0, 650.0))
+mdb.models['Model-1'].sketches['__profile__'].VerticalConstraint(addUndoState=
+    False, entity=mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].PerpendicularConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[3])
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(1000.0, 650.0), 
+    point2=(0.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].HorizontalDimension(textPoint=(
+    782.973754882813, -160.996429443359), value=4000.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[0], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1])
+mdb.models['Model-1'].sketches['__profile__'].VerticalDimension(textPoint=(
+    1275.21325683594, 617.061767578125), value=6000.0, vertex1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[1], vertex2=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[2])
+mdb.models['Model-1'].sketches['__profile__'].Spot(point=(-3000.0, 0.0))
+mdb.models['Model-1'].sketches['__profile__'].CoincidentConstraint(
+    addUndoState=False, entity1=
+    mdb.models['Model-1'].sketches['__profile__'].vertices[3], entity2=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[2])
+mdb.models['Model-1'].Part(dimensionality=TWO_D_PLANAR, name='trelica', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['trelica'].BaseWire(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].Material(name='barras')
+mdb.models['Model-1'].materials['barras'].Elastic(table=((200000.0, 0.0), ))
+mdb.models['Model-1'].materials['barras'].elastic.setValues(table=((200000.0, 
+    0.3), ))
+mdb.models['Model-1'].TrussSection(area=2300.0, material='barras', name=
+    'secao_transversal')
+mdb.models['Model-1'].parts['trelica'].Set(edges=
+    mdb.models['Model-1'].parts['trelica'].edges.getSequenceFromMask(('[#7 ]', 
+    ), ), name='Set-1')
+mdb.models['Model-1'].parts['trelica'].SectionAssignment(offset=0.0, 
+    offsetField='', offsetType=MIDDLE_SURFACE, region=
+    mdb.models['Model-1'].parts['trelica'].sets['Set-1'], sectionName=
+    'secao_transversal', thicknessAssignment=FROM_SECTION)
+mdb.models['Model-1'].parts['trelica'].seedEdgeByNumber(constraint=FINER, 
+    edges=mdb.models['Model-1'].parts['trelica'].edges.getSequenceFromMask((
+    '[#7 ]', ), ), number=4)
+mdb.models['Model-1'].parts['trelica'].seedEdgeByNumber(constraint=FINER, 
+    edges=mdb.models['Model-1'].parts['trelica'].edges.getSequenceFromMask((
+    '[#7 ]', ), ), number=2)
+mdb.models['Model-1'].parts['trelica'].seedEdgeByNumber(constraint=FINER, 
+    edges=mdb.models['Model-1'].parts['trelica'].edges.getSequenceFromMask((
+    '[#7 ]', ), ), number=1)
+mdb.models['Model-1'].parts['trelica'].setElementType(elemTypes=(ElemType(
+    elemCode=T2D2, elemLibrary=STANDARD), ), regions=(
+    mdb.models['Model-1'].parts['trelica'].edges.getSequenceFromMask(('[#7 ]', 
+    ), ), ))
+mdb.models['Model-1'].parts['trelica'].generateMesh()
+mdb.models['Model-1'].rootAssembly.DatumCsysByDefault(CARTESIAN)
+mdb.models['Model-1'].rootAssembly.Instance(dependent=ON, name='trelica-1', 
+    part=mdb.models['Model-1'].parts['trelica'])
+mdb.models['Model-1'].rootAssembly.Set(name='Set-1', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['trelica-1'].vertices.getSequenceFromMask(
+    ('[#1 ]', ), ))
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='apoio)fixo', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-1'], u1=SET, u2=SET, 
+    ur3=UNSET)
+mdb.models['Model-1'].boundaryConditions.changeKey(fromName='apoio)fixo', 
+    toName='apoio_fixo')
+mdb.models['Model-1'].rootAssembly.Set(name='Set-2', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['trelica-1'].vertices.getSequenceFromMask(
+    ('[#4 ]', ), ))
+mdb.models['Model-1'].DisplacementBC(amplitude=UNSET, createStepName='Initial', 
+    distributionType=UNIFORM, fieldName='', localCsys=None, name='apoio_movel', 
+    region=mdb.models['Model-1'].rootAssembly.sets['Set-2'], u1=UNSET, u2=SET, 
+    ur3=UNSET)
+mdb.models['Model-1'].StaticStep(name='forca_concentrada', previous='Initial')
+mdb.models['Model-1'].rootAssembly.Set(name='Set-3', vertices=
+    mdb.models['Model-1'].rootAssembly.instances['trelica-1'].vertices.getSequenceFromMask(
+    ('[#2 ]', ), ))
+mdb.models['Model-1'].ConcentratedForce(cf1=12000.0, createStepName=
+    'forca_concentrada', distributionType=UNIFORM, field='', localCsys=None, 
+    name='P', region=mdb.models['Model-1'].rootAssembly.sets['Set-3'])
+mdb.Job(atTime=None, contactPrint=OFF, description='analise_estatica', 
+    echoPrint=OFF, explicitPrecision=SINGLE, getMemoryFromAnalysis=True, 
+    historyPrint=OFF, memory=90, memoryUnits=PERCENTAGE, model='Model-1', 
+    modelPrint=OFF, multiprocessingMode=DEFAULT, name='trelica', 
+    nodalOutputPrecision=SINGLE, numCpus=1, numGPUs=0, queue=None, 
+    resultsFormat=ODB, scratch='', type=ANALYSIS, userSubroutine='', waitHours=
+    0, waitMinutes=0)
+mdb.jobs['trelica'].submit(consistencyChecking=OFF, datacheckJob=True)
+mdb.jobs['trelica']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'PatrickSon-PC', 'handle': 0, 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(HEADING, {'phase': BATCHPRE_PHASE, 
+    'heading': 'analise_estatica', 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\Windows\\system32\\trelica.odb', 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'PatrickSon-PC', 'handle': 10544, 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'trelica', 'memory': 7.0})
+mdb.jobs['trelica']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 16291.0, 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(MINIMUM_MEMORY, {'minimum_memory': 7.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(JOB_COMPLETED, {
+    'time': 'Thu Mar 18 16:41:11 2021', 'jobName': 'trelica'})
+mdb.jobs['trelica'].submit(consistencyChecking=OFF)
+mdb.jobs['trelica']._Message(STARTED, {'phase': BATCHPRE_PHASE, 
+    'clientHost': 'PatrickSon-PC', 'handle': 0, 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(HEADING, {'phase': BATCHPRE_PHASE, 
+    'heading': 'analise_estatica', 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(WARNING, {'phase': BATCHPRE_PHASE, 
+    'message': 'FOR TWO-DIMENSIONAL MODELS, IF A NON-UNITY THICKNESS IS SPECIFIED FOR TWO-DIMENSIONAL SOLID ELEMENTS AND THESE ELEMENTS ARE INVOLVED IN AN INTERACTION SUCH AS CONTACT, THE SAME THICKNESS SHOULD BE SPECIFIED FOR THE OUT-OF-PLANE THICKNESS OF THE CORRESPONDING SURFACE UNDER *SURFACE INTERACTION.', 
+    'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(ODB_FILE, {'phase': BATCHPRE_PHASE, 
+    'file': 'C:\\Windows\\system32\\trelica.odb', 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(COMPLETED, {'phase': BATCHPRE_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(STARTED, {'phase': STANDARD_PHASE, 
+    'clientHost': 'PatrickSon-PC', 'handle': 9228, 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 0, 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(MEMORY_ESTIMATE, {'phase': STANDARD_PHASE, 
+    'jobName': 'trelica', 'memory': 24.0})
+mdb.jobs['trelica']._Message(PHYSICAL_MEMORY, {'phase': STANDARD_PHASE, 
+    'physical_memory': 16291.0, 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(MINIMUM_MEMORY, {'minimum_memory': 17.0, 
+    'phase': STANDARD_PHASE, 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(ODB_FRAME, {'phase': STANDARD_PHASE, 'step': 0, 
+    'frame': 1, 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(STATUS, {'totalTime': 1.0, 'attempts': 1, 
+    'timeIncrement': 1.0, 'increment': 1, 'stepTime': 1.0, 'step': 1, 
+    'jobName': 'trelica', 'severe': 0, 'iterations': 1, 
+    'phase': STANDARD_PHASE, 'equilibrium': 1})
+mdb.jobs['trelica']._Message(END_STEP, {'phase': STANDARD_PHASE, 'stepId': 1, 
+    'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(COMPLETED, {'phase': STANDARD_PHASE, 
+    'message': 'Analysis phase complete', 'jobName': 'trelica'})
+mdb.jobs['trelica']._Message(JOB_COMPLETED, {
+    'time': 'Thu Mar 18 16:41:56 2021', 'jobName': 'trelica'})
+# Save by Patrick Son on 2021_03_18-16.59.54; build 2017 2016_09_27-18.54.59 126836
